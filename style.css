@@ -1,0 +1,55 @@
+/* Estilos generales del cuerpo de la página */
+body {
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el contenedor principal (versión de escritorio) */
+.main-container {
+  width: 75%;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* El mapa ocupa el 100% de su contenedor */
+#mapa {
+  height: 600px;
+  width: 100%; 
+  border-radius: 8px;
+}
+
+/* Define la animación de "salto" */
+@keyframes jump {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* Aplica la animación a la imagen DENTRO del marcador */
+.marker-wrapper:hover .marker-image {
+  animation: jump 0.7s infinite;
+}
+
+/* --- 👇 Diseño Responsivo para Móviles 👇 --- */
+@media (max-width: 768px) {
+  
+  .main-container {
+    width: 95%; /* Ocupa casi todo el ancho */
+    margin: 1rem auto; /* Menos margen arriba/abajo */
+    padding: 1rem; /* Menos espaciado interno */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Título un poco más pequeño */
+  }
+
+  #mapa {
+    height: 450px; /* Mapa menos alto para que quepa en la pantalla vertical */
+  }
+}
