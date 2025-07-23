@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // Obtener los elementos del DOM
   const loaderContainer = document.getElementById('loader-container');
   const introVideo = document.getElementById('intro-video');
   const mainContainer = document.querySelector('.main-container');
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   ];
 
-  // Función para pasar al mapa
   function irAlMapa() {
     if (loaderContainer.style.display === 'none') return;
     document.body.style.overflow = 'auto';
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const map = L.map('mapa').setView([4.705, -74.231], 16);
 
-    // Definición de las dos capas de mapa
     const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
@@ -49,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
         detectRetina: true
     });
 
-    darkLayer.addTo(map);
+    // 👇 Mapa claro añadido por defecto 👇
+    lightLayer.addTo(map);
 
     markersData.forEach(markerInfo => {
       const icon = L.divIcon({
@@ -64,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
           title: markerInfo.name
       }).addTo(map);
 
-      // Etiqueta siempre visible
       marker.bindTooltip(markerInfo.name, {
         permanent: true,
         direction: 'top',
@@ -72,27 +69,24 @@ document.addEventListener('DOMContentLoaded', function () {
         className: 'permanent-label'
       }).openTooltip();
       
-      // La redirección es con un solo CLIC
       marker.on('click', function() {
         window.open('https://www.mosquera-cundinamarca.gov.co/', '_blank');
       });
     });
     
-    // Lógica del botón para cambiar tema
     themeBtn.addEventListener('click', function() {
-        if (map.hasLayer(darkLayer)) {
-            map.removeLayer(darkLayer);
-            lightLayer.addTo(map);
-            this.innerHTML = 'Cambiar a Mapa Oscuro';
-        } else {
+        if (map.hasLayer(lightLayer)) {
             map.removeLayer(lightLayer);
             darkLayer.addTo(map);
             this.innerHTML = 'Cambiar a Mapa Claro';
+        } else {
+            map.removeLayer(darkLayer);
+            lightLayer.addTo(map);
+            this.innerHTML = 'Cambiar a Mapa Oscuro';
         }
     });
   }
 
-  // Eventos que activan el paso al mapa
   introVideo.addEventListener('ended', irAlMapa);
   introVideo.addEventListener('error', irAlMapa);
   skipBtn.addEventListener('click', irAlMapa);
