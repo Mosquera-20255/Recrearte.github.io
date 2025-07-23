@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         className: 'permanent-label'
       }).openTooltip();
       
-      // AHORA la redirección es con un solo CLIC
+      // La redirección es con un solo CLIC
       marker.on('click', function() {
         window.open('https://www.mosquera-cundinamarca.gov.co/', '_blank');
       });
