@@ -1,55 +1,122 @@
-/* Estilos generales del cuerpo de la página */
+/* Paleta de Colores Inspirada en el Video */
+:root {
+  --color-fondo-oscuro: #1a1a2e;
+  --color-contenedor: #2a2a3e;
+  --color-neon-purpura: #9d4edd;
+  --color-neon-cyan: #00f5d4;
+  --color-texto-claro: #f0f0f0;
+}
+
 body {
   font-family: sans-serif;
-  background-color: #f0f0f0;
+  background: radial-gradient(circle, #2c2c54, var(--color-fondo-oscuro));
+  color: var(--color-texto-claro);
   margin: 0;
   padding: 0;
 }
 
-/* Estilos para el contenedor principal (versión de escritorio) */
+#loader-container, #intro-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+#loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+
+#intro-video {
+  max-width: 90%;
+  max-height: 90%;
+}
+
 .main-container {
   width: 75%;
   max-width: 1400px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #ffffff;
+  background-color: var(--color-contenedor);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 1px solid var(--color-neon-purpura);
+  box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
 }
 
-/* El mapa ocupa el 100% de su contenedor */
+h1 {
+  text-align: center;
+  color: var(--color-neon-purpura);
+  text-shadow: 0 0 8px rgba(157, 78, 221, 0.7);
+}
+
+/* --- 👇 Estilos para el Contenedor del Botón y el Botón 👇 --- */
+.map-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#theme-toggle-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-texto-claro);
+    background-color: var(--color-contenedor);
+    border: 2px solid var(--color-neon-purpura);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle-btn:hover {
+    background-color: var(--color-neon-purpura);
+    box-shadow: 0 0 10px var(--color-neon-purpura);
+}
+/* --- Fin de Estilos del Botón --- */
+
 #mapa {
   height: 600px;
   width: 100%; 
   border-radius: 8px;
+  background-color: #333;
 }
 
-/* Define la animación de "salto" */
 @keyframes jump {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-15px); }
-  100% { transform: translateY(0); }
+  0%   { top: 0; }
+  50%  { top: -15px; }
+  100% { top: 0; }
 }
 
-/* Aplica la animación a la imagen DENTRO del marcador */
-.marker-wrapper:hover .marker-image {
+.marker-wrapper {
+  position: relative;
+}
+
+.marker-wrapper:hover {
   animation: jump 0.7s infinite;
 }
 
-/* --- 👇 Diseño Responsivo para Móviles 👇 --- */
+.permanent-label {
+  background-color: rgba(42, 42, 62, 0.8);
+  border: 1px solid var(--color-neon-purpura);
+  border-radius: 4px;
+  box-shadow: none;
+  color: var(--color-texto-claro);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 6px;
+  white-space: nowrap;
+}
+
 @media (max-width: 768px) {
-  
   .main-container {
-    width: 95%; /* Ocupa casi todo el ancho */
-    margin: 1rem auto; /* Menos margen arriba/abajo */
-    padding: 1rem; /* Menos espaciado interno */
+    width: 95%;
+    margin: 1rem auto;
+    padding: 1rem;
   }
-
-  h1 {
-    font-size: 1.5rem; /* Título un poco más pequeño */
-  }
-
-  #mapa {
-    height: 450px; /* Mapa menos alto para que quepa en la pantalla vertical */
-  }
+  h1 { font-size: 1.5rem; }
+  #mapa { height: 450px; }
 }
