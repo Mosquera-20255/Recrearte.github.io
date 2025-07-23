@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const introVideo = document.getElementById('intro-video');
   const mainContainer = document.querySelector('.main-container');
   const themeBtn = document.getElementById('theme-toggle-btn');
-  const skipBtn = document.getElementById('skip-video-btn'); // Botón de omitir
+  const skipBtn = document.getElementById('skip-video-btn');
 
   const markersData = [
     { 
@@ -24,12 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Función para pasar al mapa
   function irAlMapa() {
-    // Evita que la función se ejecute varias veces
     if (loaderContainer.style.display === 'none') return;
-
-    document.body.style.overflow = 'auto'; // Restaura el scroll
-    loaderContainer.style.display = 'none'; // Oculta el video
-    inicializarMapa(); // Inicia el mapa
+    document.body.style.overflow = 'auto';
+    loaderContainer.style.display = 'none';
+    inicializarMapa();
   }
 
   function inicializarMapa() {
@@ -66,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
           title: markerInfo.name
       }).addTo(map);
 
+      // Etiqueta siempre visible
       marker.bindTooltip(markerInfo.name, {
         permanent: true,
         direction: 'top',
@@ -73,7 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
         className: 'permanent-label'
       }).openTooltip();
       
-      marker.on('dblclick', function() {
+      // AHORA la redirección es con un solo CLIC
+      marker.on('click', function() {
         window.open('https://www.mosquera-cundinamarca.gov.co/', '_blank');
       });
     });
