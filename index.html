@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Interactivo de Mosquera</title>
-
+    <title>Prueba Recrearte</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="main-container">
-        <h1>📍Prueba recrearte</h1>
+    <div id="loader-container">
+        <video id="intro-video" src="inicio.mp4" autoplay muted playsinline></video>
+    </div>
+
+    <div class="main-container" style="display: none;">
+        <h1>🎨 Prueba Recrearte</h1>
+        
+        <div class="map-controls">
+            <button id="theme-toggle-btn">Cambiar a Mapa Claro</button>
+        </div>
+
         <div id="mapa"></div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
     <script src="script.js"></script>
 
 </body>
