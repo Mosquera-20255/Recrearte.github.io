@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
       className: '',
       html: `
         <div class="marker-wrapper">
-          <img class="marker-image" src="coliseo.png" style="width: ${intSize}px; height: auto;">
+          <img class="marker-image" src="Recrearte.jpg" style="width: ${intSize}px; height: auto;">
         </div>
       `,
       iconSize: [intSize, intSize * 0.83],
