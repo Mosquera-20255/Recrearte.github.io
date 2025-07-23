@@ -61,16 +61,15 @@ body {
 }
 /* --- Fin de Estilos de Carga --- */
 
+/* 👇 INICIO DE CAMBIOS 👇 */
+/* Estilos para el contenedor principal (AHORA A PANTALLA COMPLETA) */
 .main-container {
-  width: 75%;
-  max-width: 1400px;
-  margin: 2rem auto;
-  padding: 2rem;
+  /* Se eliminó width, max-width y margin: auto para que ocupe el 100% */
+  padding: 2rem 1rem; /* Se ajusta el padding para un look a pantalla completa */
   background-color: var(--color-contenedor);
-  border-radius: 12px;
-  border: 1px solid var(--color-neon-purpura);
-  box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+  /* Se eliminó border-radius y box-shadow que no se ven bien en pantalla completa */
 }
+/* 👆 FIN DE CAMBIOS 👆 */
 
 h1 {
   text-align: center;
@@ -101,18 +100,16 @@ h1 {
   box-shadow: 0 0 10px var(--color-neon-purpura);
 }
 
-/* 👇 INICIO DE CAMBIOS PARA EL MAPA PROPORCIONAL 👇 */
 #mapa {
-  position: relative; /* Necesario para el contenedor interno */
+  position: relative;
   width: 100%; 
-  height: 0; /* La altura se controla con el padding */
-  padding-bottom: 75%; /* Proporción 4:3. Para un cuadrado, usa 100% */
+  height: 0;
+  padding-bottom: 75%;
   border-radius: 8px;
   background-color: #333;
-  overflow: hidden; /* Oculta cualquier desborde */
+  overflow: hidden;
 }
 
-/* El contenedor que Leaflet crea debe llenar el espacio */
 #mapa .leaflet-container {
   position: absolute;
   top: 0;
@@ -120,7 +117,6 @@ h1 {
   width: 100%;
   height: 100%;
 }
-/* 👆 FIN DE CAMBIOS PARA EL MAPA PROPORCIONAL 👆 */
 
 @keyframes jump {
   0%   { top: 0; }
@@ -154,15 +150,12 @@ h1 {
     width: 95%;
   }
 
+  /* Ya no se necesita cambiar el width del contenedor principal */
   .main-container {
-    width: 95%;
-    margin: 1rem auto;
     padding: 1rem;
   }
   
   h1 { font-size: 1.5rem; }
-  
-  /* Ya no necesitamos una altura fija para el mapa aquí */
   
   #skip-video-btn {
     width: 35px;
