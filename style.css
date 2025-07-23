@@ -29,10 +29,16 @@ body {
   align-items: center;
 }
 
+/* 👇 Esta es la regla clave para el video responsivo 👇 */
 #intro-video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Hace que el video cubra todo el contenedor */
+  /*
+    'cover' asegura que el video cubra todo el espacio disponible
+    sin perder su proporción. Cortará los lados en pantallas
+    verticales, lo que es preferible a tener barras negras.
+  */
+  object-fit: cover; 
 }
 
 #skip-video-btn {
