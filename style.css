@@ -12,30 +12,30 @@ body {
   color: var(--color-texto-claro);
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 /* --- Estilos para la Carga de Video --- */
+#loader-container, #intro-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
 #loader-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
   z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #intro-video {
-  width: 75%;
-  height: auto;
-  max-width: 1400px;
-  border-radius: 12px;
-  border: 1px solid var(--color-neon-purpura);
-  box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #skip-video-btn {
@@ -61,20 +61,25 @@ body {
 }
 /* --- Fin de Estilos de Carga --- */
 
-/* 👇 INICIO DE CAMBIOS 👇 */
-/* Estilos para el contenedor principal (AHORA A PANTALLA COMPLETA) */
 .main-container {
-  /* Se eliminó width, max-width y margin: auto para que ocupe el 100% */
-  padding: 2rem 1rem; /* Se ajusta el padding para un look a pantalla completa */
+  width: 75%;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 2rem;
   background-color: var(--color-contenedor);
-  /* Se eliminó border-radius y box-shadow que no se ven bien en pantalla completa */
+  border-radius: 12px;
+  border: 1px solid var(--color-neon-purpura);
+  box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
 }
-/* 👆 FIN DE CAMBIOS 👆 */
 
-h1 {
-  text-align: center;
-  color: var(--color-neon-purpura);
-  text-shadow: 0 0 8px rgba(157, 78, 221, 0.7);
+/* 👇 Estilos para el nuevo video de cabecera 👇 */
+#header-video {
+    display: block;
+    height: 120px; /* Altura fija para el video */
+    width: auto;   /* El ancho se ajusta para mantener la proporción */
+    margin: 0 auto 1.5rem auto; /* Centrado y con margen inferior */
+    border-radius: 8px;
+    border: 1px solid var(--color-neon-purpura);
 }
 
 .map-controls {
@@ -146,16 +151,15 @@ h1 {
 
 /* --- Diseño Responsivo para Móviles --- */
 @media (max-width: 768px) {
-  #intro-video {
-    width: 95%;
-  }
-
-  /* Ya no se necesita cambiar el width del contenedor principal */
   .main-container {
+    width: 95%;
+    margin: 1rem auto;
     padding: 1rem;
   }
   
-  h1 { font-size: 1.5rem; }
+  #header-video {
+    height: 100px; /* Video un poco más pequeño en móviles */
+  }
   
   #skip-video-btn {
     width: 35px;
