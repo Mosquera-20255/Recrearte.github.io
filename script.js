@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  // Obtener los elementos del DOM
   const loaderContainer = document.getElementById('loader-container');
   const introVideo = document.getElementById('intro-video');
   const mainContainer = document.querySelector('.main-container');
-  const themeBtn = document.getElementById('theme-toggle-btn'); // Obtener el botón
+  const themeBtn = document.getElementById('theme-toggle-btn');
+  const skipBtn = document.getElementById('skip-video-btn'); // Botón de omitir
 
   const markersData = [
     { 
@@ -20,12 +22,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   ];
 
+  // Función para pasar al mapa
+  function irAlMapa() {
+    // Evita que la función se ejecute varias veces
+    if (loaderContainer.style.display === 'none') return;
+
+    document.body.style.overflow = 'auto'; // Restaura el scroll
+    loaderContainer.style.display = 'none'; // Oculta el video
+    inicializarMapa(); // Inicia el mapa
+  }
+
   function inicializarMapa() {
     mainContainer.style.display = 'block';
 
     const map = L.map('mapa').setView([4.705, -74.231], 16);
 
-    // --- 👇 Definición de las dos capas de mapa 👇 ---
+    // Definición de las dos capas de mapa
     const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
@@ -39,9 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         detectRetina: true
     });
 
-    // Añadir la capa oscura por defecto
     darkLayer.addTo(map);
-    // --- Fin de definición de capas ---
 
     markersData.forEach(markerInfo => {
       const icon = L.divIcon({
@@ -68,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
     
-    // --- 👇 Lógica del botón para cambiar tema 👇 ---
+    // Lógica del botón para cambiar tema
     themeBtn.addEventListener('click', function() {
         if (map.hasLayer(darkLayer)) {
             map.removeLayer(darkLayer);
@@ -80,16 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
             this.innerHTML = 'Cambiar a Mapa Claro';
         }
     });
-    // --- Fin de la lógica del botón ---
   }
 
-  introVideo.addEventListener('ended', function() {
-    loaderContainer.style.display = 'none';
-    inicializarMapa();
-  });
-  
-  introVideo.addEventListener('error', function() {
-      loaderContainer.style.display = 'none';
-      inicializarMapa();
-  });
+  // Eventos que activan el paso al mapa
+  introVideo.addEventListener('ended', irAlMapa);
+  introVideo.addEventListener('error', irAlMapa);
+  skipBtn.addEventListener('click', irAlMapa);
+
 });
