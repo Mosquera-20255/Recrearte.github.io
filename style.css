@@ -3,7 +3,6 @@
   --color-fondo-oscuro: #1a1a2e;
   --color-contenedor: #2a2a3e;
   --color-neon-purpura: #9d4edd;
-  --color-neon-cyan: #00f5d4;
   --color-texto-claro: #f0f0f0;
 }
 
@@ -13,30 +12,54 @@ body {
   color: var(--color-texto-claro);
   margin: 0;
   padding: 0;
+  overflow: hidden; /* Evita el scroll mientras se muestra el loader */
 }
 
-#loader-container, #intro-video {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000;
-}
-
+/* --- Estilos para la Carga de Video --- */
 #loader-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
   z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #intro-video {
-  max-width: 90%;
-  max-height: 90%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Hace que el video cubra todo el contenedor */
 }
 
+#skip-video-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.2s ease;
+}
+
+#skip-video-btn:hover {
+  background-color: white;
+  color: black;
+}
+/* --- Fin de Estilos de Carga --- */
+
 .main-container {
+  /* Estilos previos... */
   width: 75%;
   max-width: 1400px;
   margin: 2rem auto;
@@ -53,30 +76,28 @@ h1 {
   text-shadow: 0 0 8px rgba(157, 78, 221, 0.7);
 }
 
-/* --- 👇 Estilos para el Contenedor del Botón y el Botón 👇 --- */
 .map-controls {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 #theme-toggle-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--color-texto-claro);
-    background-color: var(--color-contenedor);
-    border: 2px solid var(--color-neon-purpura);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-texto-claro);
+  background-color: var(--color-contenedor);
+  border: 2px solid var(--color-neon-purpura);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #theme-toggle-btn:hover {
-    background-color: var(--color-neon-purpura);
-    box-shadow: 0 0 10px var(--color-neon-purpura);
+  background-color: var(--color-neon-purpura);
+  box-shadow: 0 0 10px var(--color-neon-purpura);
 }
-/* --- Fin de Estilos del Botón --- */
 
 #mapa {
   height: 600px;
@@ -119,4 +140,11 @@ h1 {
   }
   h1 { font-size: 1.5rem; }
   #mapa { height: 450px; }
+  #skip-video-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    top: 15px;
+    right: 15px;
+  }
 }
