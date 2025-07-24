@@ -69,15 +69,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // 👇 Se llama a la nueva función aquí 👇
-    mostrarMensajesIntroductorios();
+    // --- 👇 INICIO DE LA CORRECCIÓN 👇 ---
+    // Se ejecuta la función de mensajes solo cuando el mapa está 100% cargado.
+    map.on('load', function() {
+        mostrarMensajesIntroductorios();
+    });
+    // --- FIN DE LA CORRECCIÓN ---
   }
 
-  // --- 👇 Nueva Función para los Mensajes 👇 ---
   function mostrarMensajesIntroductorios() {
-    // Esperamos un momento para que los controles del mapa se dibujen
+    // El setTimeout aquí ya no es estrictamente necesario, pero lo dejamos como una
+    // seguridad extra para el renderizado visual.
     setTimeout(() => {
-        // Crear tooltip para el zoom
         const zoomControl = document.querySelector('.leaflet-control-zoom');
         if (zoomControl) {
             const rect = zoomControl.getBoundingClientRect();
@@ -88,14 +91,12 @@ document.addEventListener('DOMContentLoaded', function () {
             tooltipZoom.style.left = `${rect.right + 15}px`;
             tooltipZoom.style.top = `${rect.top + rect.height / 2 - tooltipZoom.offsetHeight / 2}px`;
             
-            // Desvanecer después de un tiempo
             setTimeout(() => {
                 tooltipZoom.classList.add('fade-out');
-                setTimeout(() => tooltipZoom.remove(), 1500); // Limpiar del DOM
+                setTimeout(() => tooltipZoom.remove(), 1500);
             }, 3000);
         }
 
-        // Crear tooltip para pantalla completa
         const fullscreenControl = document.querySelector('.leaflet-control-fullscreen');
         if (fullscreenControl) {
             const rect = fullscreenControl.getBoundingClientRect();
@@ -106,13 +107,12 @@ document.addEventListener('DOMContentLoaded', function () {
             tooltipFullscreen.style.left = `${rect.right + 15}px`;
             tooltipFullscreen.style.top = `${rect.top + rect.height / 2 - tooltipFullscreen.offsetHeight / 2}px`;
 
-            // Desvanecer después de un tiempo
             setTimeout(() => {
                 tooltipFullscreen.classList.add('fade-out');
-                setTimeout(() => tooltipFullscreen.remove(), 1500); // Limpiar del DOM
+                setTimeout(() => tooltipFullscreen.remove(), 1500);
             }, 3000);
         }
-    }, 500);
+    }, 100); // Un pequeño delay de 100ms es suficiente.
   }
 
   introVideo.addEventListener('ended', irAlMapa);
