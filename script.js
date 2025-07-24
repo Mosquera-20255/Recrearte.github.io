@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
       lat: 4.703590, 
       lng: -74.231070, 
       name: 'Recrearte Principal', 
-      img: 'marcador.jpg' 
+      img: 'coliseo.png' 
     },
     { 
       lat: 4.7077, 
       lng: -74.2309, 
       name: 'Punto de Información', 
-      img: 'marcador.jpg'
+      img: 'coliseo.png'
     }
   ];
 
@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const map = L.map('mapa').setView([4.705, -74.231], 16);
 
+    // Añadir el control de pantalla completa al mapa
+    map.addControl(new L.Control.Fullscreen());
+
     const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
@@ -46,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         detectRetina: true
     });
 
-    // 👇 Mapa claro añadido por defecto 👇
+    // Mapa claro añadido por defecto
     lightLayer.addTo(map);
 
     markersData.forEach(markerInfo => {
@@ -74,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
     
+    // Lógica del botón para cambiar tema
     themeBtn.addEventListener('click', function() {
         if (map.hasLayer(lightLayer)) {
             map.removeLayer(lightLayer);
@@ -87,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Eventos que activan el paso al mapa
   introVideo.addEventListener('ended', irAlMapa);
   introVideo.addEventListener('error', irAlMapa);
   skipBtn.addEventListener('click', irAlMapa);
