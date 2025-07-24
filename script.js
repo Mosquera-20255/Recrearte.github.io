@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
       lat: 4.703590, 
       lng: -74.231070, 
       name: 'Recrearte Principal', 
-      img: 'coliseo.png' 
+      img: 'marcador.jpg' 
     },
     { 
       lat: 4.7077, 
       lng: -74.2309, 
       name: 'Punto de Información', 
-      img: 'coliseo.png'
+      img: 'marcador.jpg'
     }
   ];
 
