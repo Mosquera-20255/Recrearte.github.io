@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             tooltipZoom.classList.add('fade-out');
             setTimeout(() => tooltipZoom.remove(), 1500); // Limpiar del DOM
-        }, 3000); // El mensaje dura 3 segundos
+        }, 6000); // El mensaje dura 3 segundos
     }
 
     // Crear tooltip para pantalla completa
