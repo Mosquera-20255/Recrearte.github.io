@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const markersData = [
     { 
-      lat: 4.703590, 
-      lng: -74.225807, 
+      lat: 4.703543, 
+      lng: -74.231127, 
       name: 'Coliseo Municipal', 
       img: 'marcador.jpg' 
     },
     { 
-      lat: 4.710063, 
-      lng: -74.2309, 
+      lat: 4.710113, 
+      lng: -74.225712, 
       name: 'Biblioteca municipal', 
       img: 'marcador.jpg'
     }
