@@ -97,3 +97,53 @@ document.addEventListener('DOMContentLoaded', function () {
   skipBtn.addEventListener('click', irAlMapa);
 
 });
+ mostrarMensajesIntroductorios();
+  }
+
+  // --- 👇 Nueva Función para los Mensajes 👇 ---
+  function mostrarMensajesIntroductorios() {
+    // Esperamos un momento para que los controles del mapa se dibujen
+    setTimeout(() => {
+        // Crear tooltip para el zoom
+        const zoomControl = document.querySelector('.leaflet-control-zoom');
+        if (zoomControl) {
+            const rect = zoomControl.getBoundingClientRect();
+            const tooltipZoom = document.createElement('div');
+            tooltipZoom.className = 'intro-tooltip right';
+            tooltipZoom.innerHTML = 'Usa esto para acercar o alejar';
+            document.body.appendChild(tooltipZoom);
+            tooltipZoom.style.left = `${rect.right + 15}px`;
+            tooltipZoom.style.top = `${rect.top + rect.height / 2 - tooltipZoom.offsetHeight / 2}px`;
+            
+            // Desvanecer después de un tiempo
+            setTimeout(() => {
+                tooltipZoom.classList.add('fade-out');
+                setTimeout(() => tooltipZoom.remove(), 1500); // Limpiar del DOM
+            }, 3000);
+        }
+
+        // Crear tooltip para pantalla completa
+        const fullscreenControl = document.querySelector('.leaflet-control-fullscreen');
+        if (fullscreenControl) {
+            const rect = fullscreenControl.getBoundingClientRect();
+            const tooltipFullscreen = document.createElement('div');
+            tooltipFullscreen.className = 'intro-tooltip right';
+            tooltipFullscreen.innerHTML = 'Úsalo para ver en pantalla completa';
+            document.body.appendChild(tooltipFullscreen);
+            tooltipFullscreen.style.left = `${rect.right + 15}px`;
+            tooltipFullscreen.style.top = `${rect.top + rect.height / 2 - tooltipFullscreen.offsetHeight / 2}px`;
+
+            // Desvanecer después de un tiempo
+            setTimeout(() => {
+                tooltipFullscreen.classList.add('fade-out');
+                setTimeout(() => tooltipFullscreen.remove(), 1500); // Limpiar del DOM
+            }, 3000);
+        }
+    }, 500);
+  }
+
+  introVideo.addEventListener('ended', irAlMapa);
+  introVideo.addEventListener('error', irAlMapa);
+  skipBtn.addEventListener('click', irAlMapa);
+
+});
