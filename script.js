@@ -63,58 +63,59 @@ document.addEventListener('DOMContentLoaded', function () {
     
     themeBtn.addEventListener('click', function() {
         if (map.hasLayer(lightLayer)) {
-            map.removeLayer(lightLayer); darkLayer.addTo(map); this.innerHTML = 'Cambiar a Mapa Claro';
+            map.removeLayer(lightLayer); darkLayer.addTo(map); this.innerHTML = 'Cambiar a Mapa Oscuro';
         } else {
             map.removeLayer(darkLayer); lightLayer.addTo(map); this.innerHTML = 'Cambiar a Mapa Oscuro';
         }
     });
 
     // --- 👇 INICIO DE LA CORRECCIÓN 👇 ---
-    // Se ejecuta la función de mensajes solo cuando el mapa está 100% cargado.
-    map.on('load', function() {
+    // Usamos 'whenReady' para garantizar que el mapa y sus controles existen.
+    map.whenReady(function() {
         mostrarMensajesIntroductorios();
     });
     // --- FIN DE LA CORRECCIÓN ---
   }
 
   function mostrarMensajesIntroductorios() {
-    // El setTimeout aquí ya no es estrictamente necesario, pero lo dejamos como una
-    // seguridad extra para el renderizado visual.
-    setTimeout(() => {
-        const zoomControl = document.querySelector('.leaflet-control-zoom');
-        if (zoomControl) {
-            const rect = zoomControl.getBoundingClientRect();
-            const tooltipZoom = document.createElement('div');
-            tooltipZoom.className = 'intro-tooltip right';
-            tooltipZoom.innerHTML = 'Usa esto para acercar o alejar';
-            document.body.appendChild(tooltipZoom);
-            tooltipZoom.style.left = `${rect.right + 15}px`;
-            tooltipZoom.style.top = `${rect.top + rect.height / 2 - tooltipZoom.offsetHeight / 2}px`;
-            
-            setTimeout(() => {
-                tooltipZoom.classList.add('fade-out');
-                setTimeout(() => tooltipZoom.remove(), 1500);
-            }, 3000);
-        }
+    // Crear tooltip para el zoom
+    const zoomControl = document.querySelector('.leaflet-control-zoom');
+    if (zoomControl) {
+        const rect = zoomControl.getBoundingClientRect();
+        const tooltipZoom = document.createElement('div');
+        tooltipZoom.className = 'intro-tooltip right';
+        tooltipZoom.innerHTML = 'Usa esto para acercar o alejar';
+        document.body.appendChild(tooltipZoom);
+        tooltipZoom.style.left = `${rect.right + 15}px`;
+        tooltipZoom.style.top = `${rect.top + rect.height / 2 - tooltipZoom.offsetHeight / 2}px`;
+        
+        // Desvanecer después de un tiempo
+        setTimeout(() => {
+            tooltipZoom.classList.add('fade-out');
+            setTimeout(() => tooltipZoom.remove(), 1500); // Limpiar del DOM
+        }, 3000); // El mensaje dura 3 segundos
+    }
 
-        const fullscreenControl = document.querySelector('.leaflet-control-fullscreen');
-        if (fullscreenControl) {
-            const rect = fullscreenControl.getBoundingClientRect();
-            const tooltipFullscreen = document.createElement('div');
-            tooltipFullscreen.className = 'intro-tooltip right';
-            tooltipFullscreen.innerHTML = 'Úsalo para ver en pantalla completa';
-            document.body.appendChild(tooltipFullscreen);
-            tooltipFullscreen.style.left = `${rect.right + 15}px`;
-            tooltipFullscreen.style.top = `${rect.top + rect.height / 2 - tooltipFullscreen.offsetHeight / 2}px`;
+    // Crear tooltip para pantalla completa
+    const fullscreenControl = document.querySelector('.leaflet-control-fullscreen');
+    if (fullscreenControl) {
+        const rect = fullscreenControl.getBoundingClientRect();
+        const tooltipFullscreen = document.createElement('div');
+        tooltipFullscreen.className = 'intro-tooltip right';
+        tooltipFullscreen.innerHTML = 'Úsalo para ver en pantalla completa';
+        document.body.appendChild(tooltipFullscreen);
+        tooltipFullscreen.style.left = `${rect.right + 15}px`;
+        tooltipFullscreen.style.top = `${rect.top + rect.height / 2 - tooltipFullscreen.offsetHeight / 2}px`;
 
-            setTimeout(() => {
-                tooltipFullscreen.classList.add('fade-out');
-                setTimeout(() => tooltipFullscreen.remove(), 1500);
-            }, 3000);
-        }
-    }, 100); // Un pequeño delay de 100ms es suficiente.
+        // Desvanecer después de un tiempo
+        setTimeout(() => {
+            tooltipFullscreen.classList.add('fade-out');
+            setTimeout(() => tooltipFullscreen.remove(), 1500);
+        }, 3000);
+    }
   }
 
+  // Eventos que activan el paso al mapa
   introVideo.addEventListener('ended', irAlMapa);
   introVideo.addEventListener('error', irAlMapa);
   skipBtn.addEventListener('click', irAlMapa);
