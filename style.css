@@ -133,11 +133,11 @@ body {
 
 .marker-wrapper {
   position: relative;
+  /* 👇 Se aplica la animación directamente aquí 👇 */
+  animation: jump 1.5s infinite;
 }
 
-.marker-wrapper:hover {
-  animation: jump 0.7s infinite;
-}
+/* Se elimina la regla de :hover */
 
 .permanent-label {
   background-color: rgba(42, 42, 62, 0.8);
