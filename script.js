@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
       lat: 4.703590, 
       lng: -74.225807, 
       name: 'Coliseo Municipal', 
-      img: 'recrearte.jpg' 
+      img: 'marcador.jpg' 
     },
     { 
       lat: 4.710063, 
       lng: -74.2309, 
       name: 'Biblioteca municipal', 
-      img: 'recrearte.jpg'
+      img: 'marcador.jpg'
     }
   ];
 
