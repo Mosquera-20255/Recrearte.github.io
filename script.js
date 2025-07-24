@@ -8,16 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const markersData = [
     { 
-      lat: 4.703590, 
-      lng: -74.231070, 
-      name: 'Recrearte Principal', 
-      img: 'coliseo.png' 
+      lat: 4.703512,  
+      lng: -74.231196,
+      name: 'Coliseo Municipal', 
+      img: 'marcador.jpg' 
     },
     { 
-      lat: 4.7077, 
-      lng: -74.2309, 
-      name: 'Punto de Información', 
-      img: 'coliseo.png'
+      lat: 4.710027145351975,
+      lng: -74.22619262734253, 
+      name: 'Biblioteca Municipal', 
+      img: 'marcador.jpg'
     }
   ];
 
