@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function inicializarMapa() {
     mainContainer.style.display = 'block';
-    const map = L.map('mapa').setView([4.705, -74.231], 16);
+    const map = L.map('mapa').setView([4.7130637, -74.2202284], 16);
     map.addControl(new L.Control.Fullscreen());
 
     const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd', maxZoom: 20, detectRetina: true
+        subdomains: 'abcd', maxZoom: 15, detectRetina: true
     });
     const lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
