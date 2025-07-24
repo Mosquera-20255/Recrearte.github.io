@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function inicializarMapa() {
     mainContainer.style.display = 'block';
-    const map = L.map('mapa').setView([4.7130637, -74.2202284], 16);
+    const map = L.map('mapa').setView([4.7105687, -74.22446618], 16);
     map.addControl(new L.Control.Fullscreen());
 
     const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
