@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             tooltipFullscreen.classList.add('fade-out');
             setTimeout(() => tooltipFullscreen.remove(), 1500);
-        }, 3000);
+        }, 6000);
     }
   }
 
