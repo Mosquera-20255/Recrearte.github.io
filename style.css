@@ -178,3 +178,80 @@ body {
     right: 15px;
   }
 }
+.leaflet-control-zoom a,
+.leaflet-control-fullscreen a {
+    width: 38px !important;      /* Aumenta el ancho */
+    height: 38px !important;     /* Aumenta la altura */
+    line-height: 38px !important; /* Centra el ícono verticalmente */
+    font-size: 1.6rem !important;  /* Hace el '+' y el '-' más grandes */
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  #intro-video {
+    width: 95%;
+  }
+
+  .main-container {
+    padding: 1rem;
+  }
+
+  #header-video {
+    height: 100px;
+  }
+
+  #skip-video-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    top: 15px;
+    right: 15px;
+  }
+}
+/* ... (todos los estilos anteriores se mantienen) ... */
+
+/* --- 👇 Estilos para Mensajes de Introducción 👇 --- */
+.intro-tooltip {
+    position: fixed; /* Se posiciona relativo a la ventana */
+    background-color: var(--color-neon-purpura);
+    color: var(--color-texto-claro);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    z-index: 10001; /* Por encima de todo */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.intro-tooltip::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.intro-tooltip.right::after {
+    left: -10px; /* Flecha a la izquierda del tooltip */
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 5px 10px 5px 0;
+    border-color: transparent var(--color-neon-purpura) transparent transparent;
+}
+
+/* Animación para desvanecer */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1.5s forwards;
+}
+/* --- Fin de Estilos de Introducción --- */
+
+@media (max-width: 768px) {
+    /* ... (los estilos responsivos anteriores se mantienen) ... */
+}
