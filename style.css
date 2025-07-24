@@ -133,11 +133,8 @@ body {
 
 .marker-wrapper {
   position: relative;
-  /* 👇 Se aplica la animación directamente aquí 👇 */
   animation: jump 1.5s infinite;
 }
-
-/* Se elimina la regla de :hover */
 
 .permanent-label {
   background-color: rgba(42, 42, 62, 0.8);
@@ -149,6 +146,15 @@ body {
   font-weight: bold;
   padding: 3px 6px;
   white-space: nowrap;
+}
+
+.leaflet-control-fullscreen a {
+    background-color: var(--color-contenedor) !important;
+    color: var(--color-texto-claro) !important;
+}
+
+.leaflet-control-fullscreen a:hover {
+    background-color: var(--color-neon-purpura) !important;
 }
 
 @media (max-width: 768px) {
